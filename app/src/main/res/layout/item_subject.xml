@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:wz="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/selector_list_item_bg"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <com.wz.googleplay.views.RatioLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            wz:picRatio="2.43"
+            wz:relative="width">
+             <ImageView
+                android:id="@+id/item_subject_iv_icon"
+                android:layout_width="match_parent"
+                android:layout_height="140dp" />
+        </com.wz.googleplay.views.RatioLayout>
+
+        <TextView
+            android:id="@+id/item_subject_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title" />
+    </LinearLayout>
+
+</FrameLayout>
