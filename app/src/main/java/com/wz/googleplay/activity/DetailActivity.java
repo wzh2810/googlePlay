@@ -1,21 +1,45 @@
 package com.wz.googleplay.activity;
 
 
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import com.wz.googleplay.Bean.ItemInfoBean;
 import com.wz.googleplay.R;
 import com.wz.googleplay.base.LoadingPager;
+import com.wz.googleplay.holder.DetailDesHolder;
+import com.wz.googleplay.holder.DetailDownLoadHolder;
+import com.wz.googleplay.holder.DetailInfoHolder;
+import com.wz.googleplay.holder.DetailPicHolder;
+import com.wz.googleplay.holder.DetailSafeHolder;
 import com.wz.googleplay.protocol.DetailProtocol;
 import com.wz.googleplay.utils.UIUtils;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
-    public static final String	PACKAGENAME	= "packageName";
+    public static final String PACKAGENAME = "packageName";
+
+    @Bind(R.id.detail_fl_download)
+    FrameLayout mDetailFlDownload;
+
+    @Bind(R.id.detail_fl_info)
+    FrameLayout mDetailFlInfo;
+
+    @Bind(R.id.detail_fl_safe)
+    FrameLayout mDetailFlSafe;
+
+    @Bind(R.id.detail_fl_pic)
+    FrameLayout mDetailFlPic;
+
+    @Bind(R.id.detail_fl_des)
+    FrameLayout mDetailFlDes;
+
     private String mPackageName;
     LoadingPager mLoadingPager;
     private ItemInfoBean mItemInfoBean;
@@ -24,11 +48,12 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         init();
         initActionBar();
         initView();
         initData();
+
 
     }
 
@@ -41,9 +66,35 @@ public class DetailActivity extends AppCompatActivity {
 
             @Override
             public View initSuccessView() {
-                TextView tv = new TextView(UIUtils.getContext());
-                tv.setText(mItemInfoBean.toString());
-                return tv;
+                View view = View.inflate(UIUtils.getContext(), R.layout.item_detailactivity, null);
+                ButterKnife.bind(DetailActivity.this,view);
+                // 就是要填充具体的内容
+
+                // 应用的信息部分
+                DetailInfoHolder detailInfoHolder = new DetailInfoHolder();
+                mDetailFlInfo.addView(detailInfoHolder.mRootView);
+                detailInfoHolder.setDataAndRefreshHolderView(mItemInfoBean);
+
+                // 应用的安全部分
+                DetailSafeHolder detailSafeHolder = new DetailSafeHolder();
+                mDetailFlSafe.addView(detailSafeHolder.mRootView);
+                detailSafeHolder.setDataAndRefreshHolderView(mItemInfoBean);
+
+                // 应用的截图部分
+                DetailPicHolder detailPicHolder = new DetailPicHolder();
+                mDetailFlPic.addView(detailPicHolder.mRootView);
+                detailPicHolder.setDataAndRefreshHolderView(mItemInfoBean);
+
+                // 应用的描述部分
+                DetailDesHolder detailDesHolder = new DetailDesHolder();
+                mDetailFlDes.addView(detailDesHolder.mRootView);
+                detailDesHolder.setDataAndRefreshHolderView(mItemInfoBean);
+
+                // 应用的下载部分
+                DetailDownLoadHolder detailDownLoadHolder = new DetailDownLoadHolder();
+                mDetailFlDownload.addView(detailDownLoadHolder.mRootView);
+                detailDownLoadHolder.setDataAndRefreshHolderView(mItemInfoBean);
+                return view  ;
             }
         };
         setContentView(mLoadingPager);
@@ -54,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
         DetailProtocol protocol = new DetailProtocol(mPackageName);
         try {
             mItemInfoBean = protocol.loadData(0);
-            if(mItemInfoBean != null) {
+            if (mItemInfoBean != null) {
                 return LoadingPager.LoadedResult.SUCCESS;
             }
             return LoadingPager.LoadedResult.EMPTY;
@@ -77,7 +128,7 @@ public class DetailActivity extends AppCompatActivity {
     private void initActionBar() {
         ActionBar supportActionBar = getSupportActionBar();
         supportActionBar.setTitle("GooglePlay");
-     //   supportActionBar.setDisplayShowHomeEnabled(true);
+        //   supportActionBar.setDisplayShowHomeEnabled(true);
         supportActionBar.setDisplayHomeAsUpEnabled(true);
 
     }

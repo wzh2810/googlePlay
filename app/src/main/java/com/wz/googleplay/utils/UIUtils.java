@@ -30,6 +30,11 @@ public class UIUtils {
         return getResources().getString(resId);
     }
 
+    /**得到String.xml中定义的字符信息,带占位符*/
+    public static String getString(int resId,Object... formatArgs) {
+        return getResources().getString(resId,formatArgs);
+    }
+
     /**得到String.xml中定义的字符数组信息*/
     public static String[] getStrings(int resId) {
         return getResources().getStringArray(resId);
