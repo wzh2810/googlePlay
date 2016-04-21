@@ -141,8 +141,8 @@ public abstract class BaseProtocol<T> {
 
         // home
         // ?index=0==>参数
-        Map<String, Object> parmasMap = new HashMap<>();
-        parmasMap.put("index", index + "");
+        Map<String, Object> parmasMap =getRequestParmasMap(index);
+     //   parmasMap.put("index", index + "");
 
         // 添加参数
         String urlParamsByMap = HttpUtil.getUrlParamsByMap(parmasMap);
@@ -190,6 +190,18 @@ public abstract class BaseProtocol<T> {
         /*=============== 2.接续网络请求回来的数据 ===============*/
     //    T t = parseJsonString(resultJsonString);
         return parseJsonString(resultJsonString);
+    }
+
+    /**
+     * @des 封装请求的参数
+     * @des 子类可以覆写该方法，返回更多的参数
+     * @param index
+     * @return
+     */
+    public Map<String,Object> getRequestParmasMap(int index) {
+        Map<String,Object> defalutParams = new HashMap<>();
+        defalutParams.put("index",index + "");
+        return defalutParams;
     }
 
     /**

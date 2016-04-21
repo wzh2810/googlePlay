@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 
 import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.adapter.ItemAdapter;
 import com.wz.googleplay.base.BaseFragment;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.base.LoadingPager;
@@ -51,16 +52,13 @@ public class AppFragment extends BaseFragment {
         return listView;
     }
 
-    class AppAdapter extends SuperBaseAdapter<ItemInfoBean> {
+    class AppAdapter extends ItemAdapter {
 
         public AppAdapter(AbsListView absListView, List DataSource) {
             super(absListView, DataSource);
         }
 
-        @Override
-        public BaseHolder getSpecialHolder(int position) {
-            return new ItemHolder();
-        }
+
 
         @Override
         public List<ItemInfoBean> onLoadMore() throws Exception {

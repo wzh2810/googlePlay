@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.wz.googleplay.Bean.CategoryInfoBean;
 import com.wz.googleplay.base.BaseHolder;
-import com.wz.googleplay.utils.UIUtils; 
+import com.wz.googleplay.utils.UIUtils;
 
 /**
  * Created by wz on 2016/4/20.
