@@ -1,6 +1,5 @@
-package com.wz.googleplay.mangaer;
+package com.wz.googleplay.manager;
 
-import java.io.InterruptedIOException;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;

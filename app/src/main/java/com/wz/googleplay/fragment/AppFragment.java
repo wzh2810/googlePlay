@@ -62,7 +62,7 @@ public class AppFragment extends BaseFragment {
 
         @Override
         public List<ItemInfoBean> onLoadMore() throws Exception {
-            SystemClock.sleep(2000);
+
             return mProtocol.loadData(mDatas.size());
         }
     }

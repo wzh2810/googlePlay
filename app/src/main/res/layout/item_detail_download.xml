@@ -37,7 +37,7 @@
 
         <!-- 下载区域 -->
 
-        <Button
+        <com.wz.googleplay.views.ProgressButton
             android:id="@+id/app_detail_download_btn_download"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

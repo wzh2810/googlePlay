@@ -1,6 +1,6 @@
 package com.wz.googleplay.factory;
 
-import com.wz.googleplay.mangaer.ThreadPoolProxy;
+import com.wz.googleplay.manager.ThreadPoolProxy;
 
 /**
  * Created by wz on 2016/4/17.
@@ -31,7 +31,7 @@ public class ThreadPoolProxyFactory {
     /**
      * 返回下载线程池
      */
-    public static ThreadPoolProxy curateDownloadThreadPoolProxy() {
+    public static ThreadPoolProxy createDownloadThreadPoolProxy() {
         if(mDownloadThreadpoolProxy == null) {
             synchronized (ThreadPoolProxyFactory.class) {
                 if(mDownloadThreadpoolProxy == null) {

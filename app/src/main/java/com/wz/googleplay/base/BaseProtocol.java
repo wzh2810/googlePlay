@@ -130,7 +130,15 @@ public abstract class BaseProtocol<T> {
      * @return
      */
     private String generateKey(int index) {
-        return getInterfaceKey() + "." + index;
+
+        Map<String,Object> requestParamsMap = getRequestParmasMap(index);
+        for(Map.Entry<String,Object> info : requestParamsMap.entrySet()) {
+            String key = info.getKey();   //"index" "packgeName"
+            Object value = info.getValue(); // 0 20 40 具体包名
+            return  getInterfaceKey() + "." + value;
+        }
+      //  return getInterfaceKey() + "." + index;
+        return "";
     }
 
     /**从网络加载数据*/
