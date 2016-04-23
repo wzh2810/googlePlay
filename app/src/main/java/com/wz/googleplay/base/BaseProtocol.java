@@ -2,6 +2,7 @@ package com.wz.googleplay.base;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -17,6 +18,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -224,4 +227,20 @@ public abstract class BaseProtocol<T> {
      * @des 必须的
      */
     public abstract T parseJsonString(String resultJsonString);
+
+
+    public T parseJsonString1(String resultJsonString) {
+
+        // 统一json解析处理
+        Gson gson = new Gson();
+
+        Class c = this.getClass();// 得到子类的类型
+        Type superType = c.getGenericSuperclass();// 得到子类传递的完整参数化类型
+        ParameterizedType pType = (ParameterizedType) superType;// 还需要强转成参数化类型
+        Type[] types = pType.getActualTypeArguments();// 得到真实的类型参数们
+
+        Type type = types[0];
+        T t = gson.fromJson(resultJsonString, type);
+        return t;
+    }
 }

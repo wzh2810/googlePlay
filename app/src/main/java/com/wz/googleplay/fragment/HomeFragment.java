@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.wz.googleplay.adapter.ItemAdapter;
 import com.wz.googleplay.bean.HomeBean;
 import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.base.BaseFragment;
@@ -18,6 +19,8 @@ import com.wz.googleplay.base.SuperBaseAdapter;
 import com.wz.googleplay.factory.ListViewFactory;
 import com.wz.googleplay.holder.HomePictureHolder;
 import com.wz.googleplay.holder.ItemHolder;
+import com.wz.googleplay.manager.DownLoadInfo;
+import com.wz.googleplay.manager.DownLoadManager;
 import com.wz.googleplay.protocol.HomeProtocol;
 import com.wz.googleplay.utils.UIUtils;
 
@@ -30,7 +33,8 @@ public class HomeFragment extends BaseFragment {
 
     private List<ItemInfoBean> mDatas;
     private List<String> mPicstures;
-    HomeProtocol  mProtocol;
+    private HomeProtocol  mProtocol;
+    private HomeAdapter mAdapter;
 
     /**
      * @return 返回值只能是(1, 2, 3) 中的某一个值,如果设置为其他值,会影响视图的显示逻辑
@@ -40,39 +44,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected LoadingPager.LoadedResult initData() {
         try {
-            // 真正的加载数据
-            // 同步
-//            // 1.创建OkHttpClient实例对象
-//            OkHttpClient okHttpClient = new OkHttpClient();
-//
-//            // home
-//            // ?index=0==>参数
-//            Map<String, Object> parmasMap = new HashMap<>();
-//            parmasMap.put("index", 0);
-//
-//            // 添加参数
-//            String urlParamsByMap = HttpUtil.getUrlParamsByMap(parmasMap);
-//
-//            String url = Constants.URLS.BASEURL + "home?" + urlParamsByMap;
-//
-//            LogUtils.s("url:" + url);
-//
-//            // 2.创建一个请求
-//            Request request = new Request.Builder().get()// get方法
-//                    .url(url)// 对应的url
-//                    .build();
-//
-//            // 3.发起请求
-//            Response response = okHttpClient.newCall(request).execute();
-//
-//            // 4.取出结果
-//            String resultJsonString = response.body().string();
-//
-//            LogUtils.i("resultJsonString:" + resultJsonString);
-//
-//            // 解析json
-//            Gson gson = new Gson();
-//            HomeBean homeBean = gson.fromJson(resultJsonString, HomeBean.class);
+
             /**----------------协议简单封装以后----------------------**/
             mProtocol = new HomeProtocol();
             HomeBean homeBean = mProtocol.loadData(0);
@@ -122,7 +94,7 @@ public class HomeFragment extends BaseFragment {
         return listView;
     }
 
-    class HomeAdapter extends SuperBaseAdapter<ItemInfoBean> {
+    class HomeAdapter extends ItemAdapter {
         public HomeAdapter(AbsListView absListView, List dataSource) {
             super(absListView, dataSource);
         }
@@ -130,61 +102,10 @@ public class HomeFragment extends BaseFragment {
 
         /**
          * @return
-         * @des 返回BaseHolder子类实例对象
-         * @call 走到getView方法中而且(convertView == null)的时候被调用
-         * @param position
-         */
-        @Override
-        public BaseHolder getSpecialHolder(int position) {
-            return new ItemHolder();
-        }
-
-        @Override
-        public void onNormalItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Toast.makeText(UIUtils.getContext(), mDatas.get(position).packageName, Toast.LENGTH_SHORT).show();
-            super.onNormalItemClick(parent, view, position, id);
-        }
-
-        /**
-         * @return
          * @des 真正的在子线程中加载更多
          */
         @Override
         public List<ItemInfoBean> onLoadMore() throws Exception {
-            SystemClock.sleep(2000);
-           /* // 真正的加载数据
-            // 同步
-            // 1.创建OkHttpClient实例对象
-            OkHttpClient okHttpClient = new OkHttpClient();
-
-            // home
-            // ?index=0==>参数
-            Map<String, Object> parmasMap = new HashMap<>();
-            parmasMap.put("index", mDatas.size());
-
-            // 添加参数
-            String urlParamsByMap = HttpUtil.getUrlParamsByMap(parmasMap);
-
-            String url = Constants.URLS.BASEURL + "home?" + urlParamsByMap;
-
-            LogUtils.s("url:" + url);
-
-            // 2.创建一个请求
-            Request request = new Request.Builder().get()// get方法
-                    .url(url)// 对应的url
-                    .build();
-
-            // 3.发起请求
-            Response response = okHttpClient.newCall(request).execute();
-
-            // 4.取出结果
-            String resultJsonString = response.body().string();
-
-            LogUtils.i("resultJsonString:" + resultJsonString);
-
-            // 解析json
-            Gson gson = new Gson();
-            HomeBean homeBean = gson.fromJson(resultJsonString, HomeBean.class);*/
 
             /**----------------协议简单封装以后----------------------**/
             mProtocol = new HomeProtocol();
@@ -195,8 +116,39 @@ public class HomeFragment extends BaseFragment {
             }
             return super.onLoadMore();
         }
+
     }
 
+    @Override
+    public void onPause() {
+        // 移除所有的观察者
+        // 得到观察者
+        if(mAdapter != null) {
+            List<ItemHolder> itemHolders = mAdapter.mItemHolders;
+            for(ItemHolder itemHolder : itemHolders) {
+                DownLoadManager.getInstance().deleteObserver(itemHolder);
+            }
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+
+        //添加所有的观察者
+        if(mAdapter != null) {
+            List<ItemHolder> itemHolders = mAdapter.mItemHolders;
+            for(ItemHolder itemHolder : itemHolders) {
+                DownLoadManager.getInstance().addObserver(itemHolder);
+                //收到发布最新状态
+                DownLoadInfo downLoadInfo = DownLoadManager.getInstance().getDownLoadInfo(itemHolder.mData);
+                DownLoadManager.getInstance().notifyObservers(downLoadInfo);
+                // 调用adapter的notifyDataSetChanged
+                // mAdapter.notifyDataSetChanged();
+            }
+        }
+        super.onResume();
+    }
 }
 
 

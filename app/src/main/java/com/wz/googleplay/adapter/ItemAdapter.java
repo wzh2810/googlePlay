@@ -10,8 +10,10 @@ import com.wz.googleplay.activity.DetailActivity;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.base.SuperBaseAdapter;
 import com.wz.googleplay.holder.ItemHolder;
+import com.wz.googleplay.manager.DownLoadManager;
 import com.wz.googleplay.utils.UIUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,13 +22,21 @@ import java.util.List;
  * @描述	      点击事件可以统一写到基类里面来
  */
 public class ItemAdapter extends SuperBaseAdapter<ItemInfoBean> {
+
+    // 使用集合保存ItemAdapter中对应的所有的ItemHolder
+    public List<ItemHolder>	mItemHolders	= new ArrayList<>();
+
     public ItemAdapter(AbsListView absListView, List DataSource) {
         super(absListView, DataSource);
     }
 
     @Override
     public BaseHolder getSpecialHolder(int position) {
-        return new ItemHolder();
+        ItemHolder itemHolder = new ItemHolder();
+        mItemHolders.add(itemHolder);
+        // 加入观察者到观察者集合中
+        DownLoadManager.getInstance().addObserver(itemHolder);
+        return itemHolder;
     }
 
     @Override

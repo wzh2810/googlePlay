@@ -16,4 +16,24 @@
     <string name="detail_size">大小:%1$s</string>
     <string name="detail_date">更新时间:%1$s</string>
     <string name="detail_version">版本:%1$s</string>
+    <string name="close">关闭</string>
+    <string name="open">打开</string>
+
+    /**---------------leftmenu---------------**/
+
+    <!-- menu-->
+    <string name="app_detail_info_downloadnum">下载: %1$s</string>
+    <string name="app_detail_info_version">版本: %1$s</string>
+    <string name="app_detail_info_time">时间: %1$s</string>
+    <string name="app_detail_info_size">大小: %1$s</string>
+    <string name="tv_home">首页</string>
+    <string name="tv_setting">设置</string>
+    <string name="tv_theme">主题</string>
+    <string name="tv_scans">安装包管理</string>
+    <string name="tv_feedback">反馈</string>
+    <string name="tv_updates">检查更新</string>
+    <string name="tv_about">关于</string>
+    <string name="tv_exit">退出</string>
+    <string name="tv_user_name">未知</string>
+    <string name="tv_user_email">unknown@gmail.com</string>
 </resources>
