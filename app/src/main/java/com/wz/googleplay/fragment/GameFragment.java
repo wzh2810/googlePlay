@@ -94,10 +94,10 @@ public class GameFragment extends BaseFragment {
             for (ItemHolder itemHolder : itemHolders) {
                 DownLoadManager.getInstance().addObserver(itemHolder);
                 // 收到发布最新状态
-                DownLoadInfo downLoadInfo = DownLoadManager.getInstance().getDownLoadInfo(itemHolder.mData);
-                DownLoadManager.getInstance().notifyObservers(downLoadInfo);
+//                DownLoadInfo downLoadInfo = DownLoadManager.getInstance().getDownLoadInfo(itemHolder.mData);
+//                DownLoadManager.getInstance().notifyObservers(downLoadInfo);
                 // 调用adapter的notifyDataSetChanged
-                // mAdapter.notifyDataSetChanged();
+                 mAdapter.notifyDataSetChanged();
             }
         }
         super.onResume();
