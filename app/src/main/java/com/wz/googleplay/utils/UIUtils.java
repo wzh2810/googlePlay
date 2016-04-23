@@ -45,41 +45,41 @@ public class UIUtils {
         return getResources().getColor(resId);
     }
 
-    /**
-     * 得到主线程的线程Id
-     */
 
+    /**
+     * 得到主线程的线程id
+     */
     public static long getMainThreadId() {
-        return MyApplication.getmMianThreadId();
+        return MyApplication.getMainThreadId();
     }
 
     /**
      * 得到主线程的一个handler
      */
     public static Handler getMainThreadHandler() {
-        return MyApplication.getmHandler();
+        return MyApplication.getHandler();
     }
 
     /**
-     *  安全的执行一个任务
+     * 安全的执行一个任务
      */
     public static void postTaskSafely(Runnable task) {
         // 得到当前的线程
         long curThreadId = android.os.Process.myTid();
-        //得到主线程的线程id
+        // 得到主线程的线程id
         long mainThreadId = getMainThreadId();
-        if(curThreadId == mainThreadId) {
+        if (curThreadId == mainThreadId) {
             // 如果当前是在主线程-->直接执行
             task.run();
         } else {
-            // 如何当前是在子线程-->通过消息机制，把任务发送给主线程执行
+            // 如果当前是在子线程-->通过消息机制,把任务发送到主线程执行
             getMainThreadHandler().post(task);
         }
     }
 
 
     /**
-     * 得到应用程序的报名
+     * 得到应用程序的包名
      */
     public static String getPackageName() {
         return getContext().getPackageName();

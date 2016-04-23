@@ -2,8 +2,7 @@ package com.wz.googleplay.protocol;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.wz.googleplay.Bean.HomeBean;
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.base.BaseProtocol;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package com.wz.googleplay.manager;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.config.Constants;
 import com.wz.googleplay.factory.ThreadPoolProxyFactory;
 import com.wz.googleplay.utils.CommonUtils;
@@ -15,7 +15,6 @@ import com.wz.googleplay.utils.UIUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,7 +90,6 @@ public class DownLoadManager {
 		/*#######################################*/
 
         ThreadPoolProxyFactory.createDownloadThreadPoolProxy().execute(new DownLoadTask(downLoadInfo));
-
     }
 
     /**
@@ -307,10 +305,12 @@ public class DownLoadManager {
 
     // 5.通知观察者数据发生改变
     public void notifyObservers(DownLoadInfo downLoadInfo) {
+       // LogUtils.i("### 通知观察者数据发生改变");
         for (DownLoadInfoObserver o : observers) {
             o.onDownLoadInfoChanged(downLoadInfo);
         }
     }
 	/*--------------- 自己实现观察者设计模式,通知DownLoadInfo信息的改变  end---------------*/
 }
+
 

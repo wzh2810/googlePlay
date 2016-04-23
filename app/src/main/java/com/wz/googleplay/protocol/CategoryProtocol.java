@@ -1,10 +1,7 @@
 package com.wz.googleplay.protocol;
 
-import com.google.gson.JsonArray;
-import com.wz.googleplay.Bean.CategoryInfoBean;
+import com.wz.googleplay.bean.CategoryInfoBean;
 import com.wz.googleplay.base.BaseProtocol;
-import com.wz.googleplay.utils.LogUtils;
-import com.wz.googleplay.utils.UIUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

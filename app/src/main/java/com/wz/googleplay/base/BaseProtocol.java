@@ -2,11 +2,9 @@ package com.wz.googleplay.base;
 
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import com.wz.googleplay.Bean.HomeBean;
 import com.wz.googleplay.config.Constants;
 import com.wz.googleplay.utils.FileUtils;
 import com.wz.googleplay.utils.HttpUtil;

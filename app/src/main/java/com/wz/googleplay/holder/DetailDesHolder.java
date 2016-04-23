@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ObjectAnimator;
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.R;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.utils.UIUtils;

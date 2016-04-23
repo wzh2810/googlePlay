@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wz.googleplay.Bean.CategoryInfoBean;
+import com.wz.googleplay.bean.CategoryInfoBean;
 import com.wz.googleplay.R;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.config.Constants;

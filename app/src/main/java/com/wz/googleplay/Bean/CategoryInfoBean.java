@@ -1,4 +1,4 @@
-package com.wz.googleplay.Bean;
+package com.wz.googleplay.bean;
 
 /**
  * Created by wz on 2016/4/20.

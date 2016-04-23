@@ -14,14 +14,15 @@ import java.util.Map;
  * 放置常用的对象
  */
 public class MyApplication extends Application {
+
     private static Context mContext;
     private static Handler mHandler;
-    private static long mMianThreadId;
+    private static long    mMainThreadId;
 
-    //保存协议的内容
-    private Map<String,String> mProtocolMap = new HashMap<>();
+    //保存我们协议的内容
+    private Map<String, String> mProtocolMap = new HashMap<>();
 
-    public Map<String,String> getProtocolMap() {
+    public Map<String, String> getProtocolMap() {
         return mProtocolMap;
     }
 
@@ -29,25 +30,31 @@ public class MyApplication extends Application {
         return mContext;
     }
 
-    public static Handler getmHandler() {
+    public static Handler getHandler() {
         return mHandler;
     }
 
-    public static long getmMianThreadId(){
-        return mMianThreadId;
+    public static long getMainThreadId() {
+        return mMainThreadId;
     }
 
     @Override
-    public void onCreate() { //程序的入口方法
-        //1.上下文
+    public void onCreate() {// 程序的入口方法
+
+        // 1.上下文
         mContext = getApplicationContext();
 
-        //2.主线程的Handler
+        // 2.主线程的Handler
         mHandler = new Handler();
 
-        //3.得到主线程的id
-        mMianThreadId = android.os.Process.myTid();
+        // 3.得到主线程的id
+        mMainThreadId = android.os.Process.myTid();
+        /**
+         myTid: thread
+         myPid: process
+         myUid: user
+         */
+
         super.onCreate();
     }
 }
-

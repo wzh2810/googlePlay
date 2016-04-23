@@ -1,19 +1,15 @@
 package com.wz.googleplay.fragment;
 
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
 
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.adapter.ItemAdapter;
 import com.wz.googleplay.base.BaseFragment;
-import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.base.LoadingPager;
-import com.wz.googleplay.base.SuperBaseAdapter;
 import com.wz.googleplay.factory.ListViewFactory;
-import com.wz.googleplay.holder.ItemHolder;
 import com.wz.googleplay.protocol.AppProtocol;
 
 import java.util.List;

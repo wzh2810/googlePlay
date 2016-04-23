@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-import butterknife.ButterKnife;
+
 
 /**
  * Created by wz on 2016/4/22.
@@ -47,7 +47,7 @@ public class ProgressButton extends Button {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        // canvas.drawText("haha", 20, 20, getPaint());
+
         if (isProgressEnable) {
             Drawable drawable = new ColorDrawable(Color.BLUE);
 

@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.wz.googleplay.Bean.HomeBean;
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.HomeBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.base.BaseFragment;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.base.LoadingPager;

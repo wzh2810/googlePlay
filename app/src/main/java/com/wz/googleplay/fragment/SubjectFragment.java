@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.wz.googleplay.Bean.SubjectInfoBean;
+import com.wz.googleplay.bean.SubjectInfoBean;
 import com.wz.googleplay.base.BaseFragment;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.base.LoadingPager;

@@ -2,24 +2,18 @@ package com.wz.googleplay.holder;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.R;
 import com.wz.googleplay.base.BaseHolder;
-import com.wz.googleplay.config.Constants;
 import com.wz.googleplay.manager.DownLoadInfo;
 import com.wz.googleplay.manager.DownLoadManager;
 import com.wz.googleplay.utils.CommonUtils;
-import com.wz.googleplay.utils.FileUtils;
-import com.wz.googleplay.utils.HttpUtil;
 import com.wz.googleplay.utils.LogUtils;
 import com.wz.googleplay.utils.UIUtils;
 import com.wz.googleplay.views.ProgressButton;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -225,7 +219,9 @@ public class DetailDownLoadHolder extends BaseHolder<ItemInfoBean> implements Do
     @Override
     public void onDownLoadInfoChanged(final DownLoadInfo downLoadInfo) {
         // 过滤DownLoadInfo信息
+        LogUtils.i("##### 过滤DownLoadInfo信息");
         if (!downLoadInfo.packageName.equals(mData.packageName)) {
+            LogUtils.i("// 过滤DownLoadInfo信息");
             return;
         }
 
@@ -238,4 +234,5 @@ public class DetailDownLoadHolder extends BaseHolder<ItemInfoBean> implements Do
         });
     }
 }
+
 

@@ -1,7 +1,7 @@
 package com.wz.googleplay.protocol;
 
 import com.google.gson.Gson;
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.base.BaseProtocol;
 
 import java.util.HashMap;

@@ -4,7 +4,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
-import com.wz.googleplay.Bean.CategoryInfoBean;
+import com.wz.googleplay.bean.CategoryInfoBean;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.utils.UIUtils;
 

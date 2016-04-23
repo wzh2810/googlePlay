@@ -1,11 +1,10 @@
 package com.wz.googleplay.holder;
 
-import android.provider.Contacts;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.R;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.config.Constants;

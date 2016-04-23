@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.activity.DetailActivity;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.base.SuperBaseAdapter;

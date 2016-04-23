@@ -1,4 +1,4 @@
-package com.wz.googleplay.Bean;
+package com.wz.googleplay.bean;
 
 import java.util.List;
 

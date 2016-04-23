@@ -5,12 +5,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.wz.googleplay.Bean.ItemInfoBean;
+import com.wz.googleplay.bean.ItemInfoBean;
 import com.wz.googleplay.R;
 import com.wz.googleplay.base.BaseHolder;
 import com.wz.googleplay.config.Constants;
 import com.wz.googleplay.utils.PicassoUtils;
-import com.wz.googleplay.utils.StringUtils;
 import com.wz.googleplay.utils.UIUtils;
 
 import butterknife.Bind;
