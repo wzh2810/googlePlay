@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.wz.googleplay.R;
 import com.wz.googleplay.utils.UIUtils;
 
+import butterknife.OnClick;
+
 /**
  * Created by wz on 2016/4/17.
  * @描述	      1.提供视图
@@ -60,4 +62,5 @@ public class GameHolder1 {
         mTv_2.setText("我是尾---" + data);
         mTv_2.setTextColor(Color.GREEN);
     }
+
 }
